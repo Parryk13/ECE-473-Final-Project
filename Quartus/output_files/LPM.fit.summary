@@ -1,0 +1,16 @@
+Fitter Status : Successful - Thu Oct 22 16:42:16 2015
+Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Revision Name : LPM
+Top-level Entity Name : registerarray
+Family : Cyclone II
+Device : EP2C35F672C6
+Timing Models : Final
+Total logic elements : 2,485 / 33,216 ( 7 % )
+    Total combinational functions : 2,111 / 33,216 ( 6 % )
+    Dedicated logic registers : 1,120 / 33,216 ( 3 % )
+Total registers : 1120
+Total pins : 152 / 475 ( 32 % )
+Total virtual pins : 0
+Total memory bits : 0 / 483,840 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 70 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )
