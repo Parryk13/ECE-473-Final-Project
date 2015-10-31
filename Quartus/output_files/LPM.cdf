@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP2C35F672) Path("C:/Users/Chris/Desktop/School/ECE 473/Labs/Lab 4/Quartus/output_files/") File("LPM.sof") MfrSpec(OpMask(1));
+		Device PartName(EP2C35F672) Path("C:/Users/Chris/Desktop/School/ECE 473/Labs/Lab 5/Quartus/output_files/") File("LPM.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

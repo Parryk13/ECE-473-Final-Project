@@ -1,0 +1,19 @@
+// Id_Ex
+
+module ID_EX (
+	input [31:0] D1_in,
+	input [31:0] D2_in,
+	input [4:0] RD_in,
+	input clk,
+	output reg [31:0] D1_out,
+	output reg [31:0] D2_out,
+	output reg [31:0] RD_out);
+
+	always @ (posedge clk)
+	begin
+		D1_in <= D1_out;
+		D2_in <= D2_out;
+		R1_in <= R1_out;
+	end
+
+endmodule

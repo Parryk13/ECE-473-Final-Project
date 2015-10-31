@@ -1,0 +1,14 @@
+// Adder
+
+module IF_ID (
+	input [31:0] x,
+	input [31:0] y,
+	input clk,
+	output reg [31:0] result);
+
+	always @ (posedge clk)
+	begin
+		result <= x + y;
+	end
+
+endmodule

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for LPM
-Thu Oct 22 16:41:51 2015
+Thu Oct 29 17:18:40 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -13,12 +13,26 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Inverted Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
- 13. Analysis & Synthesis Suppressed Messages
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |LPM|LCD_Display:inst18|next_command
+ 11. State Machine - |LPM|LCD_Display:inst18|state
+ 12. Registers Removed During Synthesis
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated
+ 17. Source assignments for ram:inst|altsyncram:altsyncram_component|altsyncram_5cc1:auto_generated
+ 18. Parameter Settings for User Entity Instance: LCD_Display:inst18
+ 19. Parameter Settings for User Entity Instance: lpm_mux2:inst17|lpm_mux:LPM_MUX_component
+ 20. Parameter Settings for User Entity Instance: lpm_mux2:inst26|lpm_mux:LPM_MUX_component
+ 21. Parameter Settings for User Entity Instance: lpm_mux0:inst13|lpm_mux:LPM_MUX_component
+ 22. Parameter Settings for User Entity Instance: rom:inst1|altsyncram:altsyncram_component
+ 23. Parameter Settings for User Entity Instance: ram:inst|altsyncram:altsyncram_component
+ 24. altsyncram Parameter Settings by Entity Instance
+ 25. Elapsed Time Per Partition
+ 26. Analysis & Synthesis Messages
+ 27. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -44,18 +58,18 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Oct 22 16:41:51 2015           ;
+; Analysis & Synthesis Status        ; Successful - Thu Oct 29 17:18:40 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; LPM                                             ;
-; Top-level Entity Name              ; registerarray                                   ;
+; Top-level Entity Name              ; LPM                                             ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 3,093                                           ;
-;     Total combinational functions  ; 2,111                                           ;
-;     Dedicated logic registers      ; 1,120                                           ;
-; Total registers                    ; 1120                                            ;
-; Total pins                         ; 152                                             ;
+; Total logic elements               ; 3,602                                           ;
+;     Total combinational functions  ; 2,475                                           ;
+;     Dedicated logic registers      ; 1,407                                           ;
+; Total registers                    ; 1407                                            ;
+; Total pins                         ; 92                                              ;
 ; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 0                                               ;
+; Total memory bits                  ; 4,864                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
 ; Total PLLs                         ; 0                                               ;
 +------------------------------------+-------------------------------------------------+
@@ -67,7 +81,7 @@ applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; EP2C35F672C6       ;                    ;
-; Top-level entity name                                                      ; registerarray      ; LPM                ;
+; Top-level entity name                                                      ; LPM                ; LPM                ;
 ; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
@@ -157,53 +171,208 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                           ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                             ; Library ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------------------------------------+---------+
-; registerarray.v                  ; yes             ; User Verilog HDL File  ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Lab 5/Quartus/registerarray.v ;         ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                    ;
++----------------------------------+-----------------+------------------------------------+---------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                                          ; Library ;
++----------------------------------+-----------------+------------------------------------+---------------------------------------------------------------------------------------+---------+
+; registerarray.v                  ; yes             ; User Verilog HDL File              ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/registerarray.v        ;         ;
+; memtest.mif                      ; yes             ; User Memory Initialization File    ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/memtest.mif            ;         ;
+; ram.v                            ; yes             ; User Wizard-Generated File         ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/ram.v                  ;         ;
+; memtest2.mif                     ; yes             ; User Memory Initialization File    ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/memtest2.mif           ;         ;
+; rom.v                            ; yes             ; User Wizard-Generated File         ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/rom.v                  ;         ;
+; debounce.vhd                     ; yes             ; User VHDL File                     ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/debounce.vhd           ;         ;
+; CLK_DIV.VHD                      ; yes             ; User VHDL File                     ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/CLK_DIV.VHD            ;         ;
+; counter.v                        ; yes             ; User Verilog HDL File              ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/counter.v              ;         ;
+; Program counter.v                ; yes             ; User Verilog HDL File              ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/Program counter.v      ;         ;
+; ALU.v                            ; yes             ; User Verilog HDL File              ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/ALU.v                  ;         ;
+; LPM.bdf                          ; yes             ; User Block Diagram/Schematic File  ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/LPM.bdf                ;         ;
+; lpm_mux0.v                       ; yes             ; User Wizard-Generated File         ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/lpm_mux0.v             ;         ;
+; LCD_Display.vhd                  ; yes             ; User VHDL File                     ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/LCD_Display.vhd        ;         ;
+; hexdigit.v                       ; yes             ; User Verilog HDL File              ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/hexdigit.v             ;         ;
+; IF_ID.v                          ; yes             ; User Verilog HDL File              ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/IF_ID.v                ;         ;
+; ID_EX.v                          ; yes             ; User Verilog HDL File              ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/ID_EX.v                ;         ;
+; EX_MEM.v                         ; yes             ; User Verilog HDL File              ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/EX_MEM.v               ;         ;
+; MEM_WB.v                         ; yes             ; User Verilog HDL File              ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/MEM_WB.v               ;         ;
+; lpm_mux2.v                       ; yes             ; Auto-Found Wizard-Generated File   ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/lpm_mux2.v             ;         ;
+; lpm_mux.tdf                      ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.tdf                         ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc                      ;         ;
+; muxlut.inc                       ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/muxlut.inc                          ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/bypassff.inc                        ;         ;
+; altshift.inc                     ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altshift.inc                        ;         ;
+; db/mux_boc.tdf                   ; yes             ; Auto-Generated Megafunction        ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/db/mux_boc.tdf         ;         ;
+; db/mux_lmc.tdf                   ; yes             ; Auto-Generated Megafunction        ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/db/mux_lmc.tdf         ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf                      ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc               ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc                         ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc                      ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc                       ;         ;
+; altrom.inc                       ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc                          ;         ;
+; altram.inc                       ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc                          ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc                        ;         ;
+; db/altsyncram_ka71.tdf           ; yes             ; Auto-Generated Megafunction        ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/db/altsyncram_ka71.tdf ;         ;
+; db/altsyncram_5cc1.tdf           ; yes             ; Auto-Generated Megafunction        ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/db/altsyncram_5cc1.tdf ;         ;
++----------------------------------+-----------------+------------------------------------+---------------------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-; Estimated Total logic elements              ; 3,093 ;
-;                                             ;       ;
-; Total combinational functions               ; 2111  ;
-; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 1973  ;
-;     -- 3 input functions                    ; 101   ;
-;     -- <=2 input functions                  ; 37    ;
-;                                             ;       ;
-; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 2111  ;
-;     -- arithmetic mode                      ; 0     ;
-;                                             ;       ;
-; Total registers                             ; 1120  ;
-;     -- Dedicated logic registers            ; 1120  ;
-;     -- I/O registers                        ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 152   ;
-; Embedded Multiplier 9-bit elements          ; 0     ;
-; Maximum fan-out node                        ; clock ;
-; Maximum fan-out                             ; 1120  ;
-; Total fan-out                               ; 11720 ;
-; Average fan-out                             ; 3.46  ;
-+---------------------------------------------+-------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                                                   ;
++---------------------------------------------+---------------------------------------------------------------------------------+
+; Resource                                    ; Usage                                                                           ;
++---------------------------------------------+---------------------------------------------------------------------------------+
+; Estimated Total logic elements              ; 3,602                                                                           ;
+;                                             ;                                                                                 ;
+; Total combinational functions               ; 2475                                                                            ;
+; Logic element usage by number of LUT inputs ;                                                                                 ;
+;     -- 4 input functions                    ; 2158                                                                            ;
+;     -- 3 input functions                    ; 175                                                                             ;
+;     -- <=2 input functions                  ; 142                                                                             ;
+;                                             ;                                                                                 ;
+; Logic elements by mode                      ;                                                                                 ;
+;     -- normal mode                          ; 2400                                                                            ;
+;     -- arithmetic mode                      ; 75                                                                              ;
+;                                             ;                                                                                 ;
+; Total registers                             ; 1407                                                                            ;
+;     -- Dedicated logic registers            ; 1407                                                                            ;
+;     -- I/O registers                        ; 0                                                                               ;
+;                                             ;                                                                                 ;
+; I/O pins                                    ; 92                                                                              ;
+; Total memory bits                           ; 4864                                                                            ;
+; Embedded Multiplier 9-bit elements          ; 0                                                                               ;
+; Maximum fan-out node                        ; lpm_mux0:inst13|lpm_mux:LPM_MUX_component|mux_lmc:auto_generated|result_node[0] ;
+; Maximum fan-out                             ; 1345                                                                            ;
+; Total fan-out                               ; 13741                                                                           ;
+; Average fan-out                             ; 3.42                                                                            ;
++---------------------------------------------+---------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |registerarray             ; 2111 (2111)       ; 1120 (1120)  ; 0           ; 0            ; 0       ; 0         ; 152  ; 0            ; |registerarray      ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                  ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                           ; Library Name ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
+; |LPM                                      ; 2475 (1)          ; 1407 (0)     ; 4864        ; 0            ; 0       ; 0         ; 92   ; 0            ; |LPM                                                                          ; work         ;
+;    |EX_MEM:inst15|                        ; 32 (32)           ; 38 (38)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|EX_MEM:inst15                                                            ; work         ;
+;    |ID_EX:inst39|                         ; 2 (2)             ; 70 (70)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|ID_EX:inst39                                                             ; work         ;
+;    |IF_ID:inst34|                         ; 0 (0)             ; 15 (15)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|IF_ID:inst34                                                             ; work         ;
+;    |LCD_Display:inst18|                   ; 195 (195)         ; 59 (59)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|LCD_Display:inst18                                                       ; work         ;
+;    |MEM_WB:inst16|                        ; 0 (0)             ; 38 (38)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|MEM_WB:inst16                                                            ; work         ;
+;    |clk_div:inst9|                        ; 35 (35)           ; 41 (41)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|clk_div:inst9                                                            ; work         ;
+;    |counter:inst5|                        ; 38 (38)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|counter:inst5                                                            ; work         ;
+;    |debounce:inst11|                      ; 2 (2)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|debounce:inst11                                                          ; work         ;
+;    |debounce:inst14|                      ; 2 (2)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|debounce:inst14                                                          ; work         ;
+;    |hexdigit:inst19|                      ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|hexdigit:inst19                                                          ; work         ;
+;    |hexdigit:inst20|                      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|hexdigit:inst20                                                          ; work         ;
+;    |hexdigit:inst21|                      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|hexdigit:inst21                                                          ; work         ;
+;    |hexdigit:inst22|                      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|hexdigit:inst22                                                          ; work         ;
+;    |hexdigit:inst25|                      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|hexdigit:inst25                                                          ; work         ;
+;    |hexdigit:inst28|                      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|hexdigit:inst28                                                          ; work         ;
+;    |hexdigit:inst29|                      ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|hexdigit:inst29                                                          ; work         ;
+;    |lpm_mux0:inst13|                      ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|lpm_mux0:inst13                                                          ; work         ;
+;       |lpm_mux:LPM_MUX_component|         ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|lpm_mux0:inst13|lpm_mux:LPM_MUX_component                                ; work         ;
+;          |mux_lmc:auto_generated|         ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|lpm_mux0:inst13|lpm_mux:LPM_MUX_component|mux_lmc:auto_generated         ; work         ;
+;    |lpm_mux2:inst17|                      ; 10 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|lpm_mux2:inst17                                                          ; work         ;
+;       |lpm_mux:LPM_MUX_component|         ; 10 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|lpm_mux2:inst17|lpm_mux:LPM_MUX_component                                ; work         ;
+;          |mux_boc:auto_generated|         ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|lpm_mux2:inst17|lpm_mux:LPM_MUX_component|mux_boc:auto_generated         ; work         ;
+;    |lpm_mux2:inst26|                      ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|lpm_mux2:inst26                                                          ; work         ;
+;       |lpm_mux:LPM_MUX_component|         ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|lpm_mux2:inst26|lpm_mux:LPM_MUX_component                                ; work         ;
+;          |mux_boc:auto_generated|         ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|lpm_mux2:inst26|lpm_mux:LPM_MUX_component|mux_boc:auto_generated         ; work         ;
+;    |ram:inst|                             ; 0 (0)             ; 0 (0)        ; 1024        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|ram:inst                                                                 ; work         ;
+;       |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 1024        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|ram:inst|altsyncram:altsyncram_component                                 ; work         ;
+;          |altsyncram_5cc1:auto_generated| ; 0 (0)             ; 0 (0)        ; 1024        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|ram:inst|altsyncram:altsyncram_component|altsyncram_5cc1:auto_generated  ; work         ;
+;    |registerarray:inst2|                  ; 2111 (2111)       ; 1120 (1120)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|registerarray:inst2                                                      ; work         ;
+;    |rom:inst1|                            ; 0 (0)             ; 0 (0)        ; 3840        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|rom:inst1                                                                ; work         ;
+;       |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 3840        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|rom:inst1|altsyncram:altsyncram_component                                ; work         ;
+;          |altsyncram_ka71:auto_generated| ; 0 (0)             ; 0 (0)        ; 3840        ; 0            ; 0       ; 0         ; 0    ; 0            ; |LPM|rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated ; work         ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                           ;
++-------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+--------------+
+; Name                                                                                ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF          ;
++-------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+--------------+
+; ram:inst|altsyncram:altsyncram_component|altsyncram_5cc1:auto_generated|ALTSYNCRAM  ; AUTO ; Single Port ; 256          ; 32           ; --           ; --           ; 8192 ; memtest.mif  ;
+; rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|ALTSYNCRAM ; AUTO ; ROM         ; 256          ; 32           ; --           ; --           ; 8192 ; memtest2.mif ;
++-------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+--------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                                            ;
++--------+--------------+---------+--------------+--------------+----------------------+---------------------------------------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance      ; IP Include File                                                           ;
++--------+--------------+---------+--------------+--------------+----------------------+---------------------------------------------------------------------------+
+; Altera ; RAM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |LPM|ram:inst        ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/ram.v      ;
+; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |LPM|rom:inst1       ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/rom.v      ;
+; Altera ; LPM_MUX      ; 13.0    ; N/A          ; N/A          ; |LPM|lpm_mux0:inst13 ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/lpm_mux0.v ;
+; Altera ; LPM_MUX      ; N/A     ; N/A          ; N/A          ; |LPM|lpm_mux2:inst17 ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/lpm_mux2.v ;
+; Altera ; LPM_MUX      ; N/A     ; N/A          ; N/A          ; |LPM|lpm_mux2:inst26 ; C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/lpm_mux2.v ;
++--------+--------------+---------+--------------+--------------+----------------------+---------------------------------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |LPM|LCD_Display:inst18|next_command                                                                                                                                                                                                                                                                                                      ;
++----------------------------+----------------------------+--------------------------+---------------------+-------------------+---------------------+--------------------------+--------------------------+--------------------+---------------------------+-----------------------+-------------------------+-----------------------+---------------------+
+; Name                       ; next_command.DISPLAY_CLEAR ; next_command.DISPLAY_OFF ; next_command.RESET3 ; next_command.HOLD ; next_command.RESET1 ; next_command.DROP_LCD_EN ; next_command.RETURN_HOME ; next_command.LINE2 ; next_command.Print_String ; next_command.MODE_SET ; next_command.DISPLAY_ON ; next_command.FUNC_SET ; next_command.RESET2 ;
++----------------------------+----------------------------+--------------------------+---------------------+-------------------+---------------------+--------------------------+--------------------------+--------------------+---------------------------+-----------------------+-------------------------+-----------------------+---------------------+
+; next_command.RESET2        ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                        ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 0                   ;
+; next_command.FUNC_SET      ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                        ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 1                     ; 1                   ;
+; next_command.DISPLAY_ON    ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                        ; 0                        ; 0                  ; 0                         ; 0                     ; 1                       ; 0                     ; 1                   ;
+; next_command.MODE_SET      ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                        ; 0                        ; 0                  ; 0                         ; 1                     ; 0                       ; 0                     ; 1                   ;
+; next_command.Print_String  ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                        ; 0                        ; 0                  ; 1                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.LINE2         ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                        ; 0                        ; 1                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.RETURN_HOME   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                        ; 1                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.DROP_LCD_EN   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 1                        ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.RESET1        ; 0                          ; 0                        ; 0                   ; 0                 ; 1                   ; 0                        ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.HOLD          ; 0                          ; 0                        ; 0                   ; 1                 ; 0                   ; 0                        ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.RESET3        ; 0                          ; 0                        ; 1                   ; 0                 ; 0                   ; 0                        ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.DISPLAY_OFF   ; 0                          ; 1                        ; 0                   ; 0                 ; 0                   ; 0                        ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.DISPLAY_CLEAR ; 1                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                        ; 0                        ; 0                  ; 0                         ; 0                     ; 0                       ; 0                     ; 1                   ;
++----------------------------+----------------------------+--------------------------+---------------------+-------------------+---------------------+--------------------------+--------------------------+--------------------+---------------------------+-----------------------+-------------------------+-----------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |LPM|LCD_Display:inst18|state                                                                                                                                                                                                           ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+-------------------+-------------------+-------------+--------------------+----------------+------------------+----------------+--------------+
+; Name                ; state.DISPLAY_CLEAR ; state.DISPLAY_OFF ; state.RESET3 ; state.RESET2 ; state.HOLD ; state.DROP_LCD_EN ; state.RETURN_HOME ; state.LINE2 ; state.Print_String ; state.MODE_SET ; state.DISPLAY_ON ; state.FUNC_SET ; state.RESET1 ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+-------------------+-------------------+-------------+--------------------+----------------+------------------+----------------+--------------+
+; state.RESET1        ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                 ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 0            ;
+; state.FUNC_SET      ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                 ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 1              ; 1            ;
+; state.DISPLAY_ON    ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                 ; 0                 ; 0           ; 0                  ; 0              ; 1                ; 0              ; 1            ;
+; state.MODE_SET      ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                 ; 0                 ; 0           ; 0                  ; 1              ; 0                ; 0              ; 1            ;
+; state.Print_String  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                 ; 0                 ; 0           ; 1                  ; 0              ; 0                ; 0              ; 1            ;
+; state.LINE2         ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                 ; 0                 ; 1           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.RETURN_HOME   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0                 ; 1                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.DROP_LCD_EN   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 1                 ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.HOLD          ; 0                   ; 0                 ; 0            ; 0            ; 1          ; 0                 ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.RESET2        ; 0                   ; 0                 ; 0            ; 1            ; 0          ; 0                 ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.RESET3        ; 0                   ; 0                 ; 1            ; 0            ; 0          ; 0                 ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.DISPLAY_OFF   ; 0                   ; 1                 ; 0            ; 0            ; 0          ; 0                 ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
+; state.DISPLAY_CLEAR ; 1                   ; 0                 ; 0            ; 0            ; 0          ; 0                 ; 0                 ; 0           ; 0                  ; 0              ; 0                ; 0              ; 1            ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+-------------------+-------------------+-------------+--------------------+----------------+------------------+----------------+--------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                    ;
++---------------------------------------------+---------------------------------------------------------+
+; Register name                               ; Reason for Removal                                      ;
++---------------------------------------------+---------------------------------------------------------+
+; program_counter:inst37|out[0,1]             ; Stuck at GND due to stuck port data_in                  ;
+; LCD_Display:inst18|LCD_RW_INT               ; Stuck at GND due to stuck port data_in                  ;
+; program_counter:inst37|out[2]               ; Merged with counter:inst5|out[0]                        ;
+; program_counter:inst37|out[3]               ; Merged with counter:inst5|out[1]                        ;
+; program_counter:inst37|out[4]               ; Merged with counter:inst5|out[2]                        ;
+; program_counter:inst37|out[5]               ; Merged with counter:inst5|out[3]                        ;
+; program_counter:inst37|out[6]               ; Merged with counter:inst5|out[4]                        ;
+; program_counter:inst37|out[7]               ; Merged with counter:inst5|out[5]                        ;
+; LCD_Display:inst18|next_command.HOLD        ; Merged with LCD_Display:inst18|next_command.DROP_LCD_EN ;
+; LCD_Display:inst18|next_command.RESET1      ; Merged with LCD_Display:inst18|next_command.DROP_LCD_EN ;
+; LCD_Display:inst18|next_command.DROP_LCD_EN ; Stuck at GND due to stuck port data_in                  ;
+; Total Number of Removed Registers = 12      ;                                                         ;
++---------------------------------------------+---------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -211,12 +380,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1120  ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
+; Total registers                              ; 1407  ;
+; Number of registers using Synchronous Clear  ; 27    ;
+; Number of registers using Synchronous Load   ; 5     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 1115  ;
+; Number of registers using Clock Enable       ; 1056  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -226,157 +395,417 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------+---------+
 ; Inverted Register                       ; Fan out ;
 +-----------------------------------------+---------+
-; regarray[25][0]                         ; 3       ;
-; regarray[21][0]                         ; 3       ;
-; regarray[17][0]                         ; 3       ;
-; regarray[29][0]                         ; 3       ;
-; regarray[27][0]                         ; 3       ;
-; regarray[23][0]                         ; 3       ;
-; regarray[19][0]                         ; 3       ;
-; regarray[31][0]                         ; 3       ;
-; regarray[9][0]                          ; 3       ;
-; regarray[11][0]                         ; 3       ;
-; regarray[5][0]                          ; 3       ;
-; regarray[7][0]                          ; 3       ;
-; regarray[1][0]                          ; 4       ;
-; regarray[3][0]                          ; 3       ;
-; regarray[13][0]                         ; 3       ;
-; regarray[15][0]                         ; 3       ;
-; regarray[26][1]                         ; 3       ;
-; regarray[22][1]                         ; 3       ;
-; regarray[18][1]                         ; 3       ;
-; regarray[30][1]                         ; 3       ;
-; regarray[23][1]                         ; 3       ;
-; regarray[27][1]                         ; 3       ;
-; regarray[19][1]                         ; 3       ;
-; regarray[31][1]                         ; 3       ;
-; regarray[6][1]                          ; 3       ;
-; regarray[7][1]                          ; 3       ;
-; regarray[10][1]                         ; 3       ;
-; regarray[11][1]                         ; 3       ;
-; regarray[2][1]                          ; 4       ;
-; regarray[3][1]                          ; 3       ;
-; regarray[14][1]                         ; 3       ;
-; regarray[15][1]                         ; 3       ;
-; regarray[22][2]                         ; 3       ;
-; regarray[30][2]                         ; 3       ;
-; regarray[21][2]                         ; 3       ;
-; regarray[29][2]                         ; 3       ;
-; regarray[20][2]                         ; 3       ;
-; regarray[28][2]                         ; 3       ;
-; regarray[23][2]                         ; 3       ;
-; regarray[31][2]                         ; 3       ;
-; regarray[5][2]                          ; 3       ;
-; regarray[6][2]                          ; 3       ;
-; regarray[4][2]                          ; 4       ;
-; regarray[7][2]                          ; 3       ;
-; regarray[13][2]                         ; 3       ;
-; regarray[14][2]                         ; 3       ;
-; regarray[12][2]                         ; 3       ;
-; regarray[15][2]                         ; 3       ;
-; regarray[25][3]                         ; 3       ;
-; regarray[29][3]                         ; 3       ;
-; regarray[26][3]                         ; 3       ;
-; regarray[30][3]                         ; 3       ;
-; regarray[24][3]                         ; 3       ;
-; regarray[28][3]                         ; 3       ;
-; regarray[27][3]                         ; 3       ;
-; regarray[31][3]                         ; 3       ;
-; regarray[9][3]                          ; 3       ;
-; regarray[10][3]                         ; 3       ;
-; regarray[8][3]                          ; 4       ;
-; regarray[11][3]                         ; 3       ;
-; regarray[14][3]                         ; 3       ;
-; regarray[13][3]                         ; 3       ;
-; regarray[12][3]                         ; 3       ;
-; regarray[15][3]                         ; 3       ;
-; regarray[22][4]                         ; 3       ;
-; regarray[26][4]                         ; 3       ;
-; regarray[18][4]                         ; 3       ;
-; regarray[30][4]                         ; 3       ;
-; regarray[25][4]                         ; 3       ;
-; regarray[21][4]                         ; 3       ;
-; regarray[17][4]                         ; 3       ;
-; regarray[29][4]                         ; 3       ;
-; regarray[20][4]                         ; 3       ;
-; regarray[24][4]                         ; 3       ;
-; regarray[16][4]                         ; 4       ;
-; regarray[28][4]                         ; 3       ;
-; regarray[27][4]                         ; 3       ;
-; regarray[23][4]                         ; 3       ;
-; regarray[19][4]                         ; 3       ;
-; regarray[31][4]                         ; 3       ;
-; Total number of inverted registers = 80 ;         ;
+; counter:inst5|out[1]                    ; 12      ;
+; counter:inst5|out[3]                    ; 16      ;
+; counter:inst5|out[2]                    ; 16      ;
+; counter:inst5|out[0]                    ; 12      ;
+; counter:inst5|out[5]                    ; 16      ;
+; counter:inst5|out[7]                    ; 8       ;
+; counter:inst5|out[6]                    ; 8       ;
+; counter:inst5|out[4]                    ; 16      ;
+; counter:inst5|out[9]                    ; 8       ;
+; counter:inst5|out[11]                   ; 8       ;
+; counter:inst5|out[10]                   ; 8       ;
+; counter:inst5|out[8]                    ; 8       ;
+; counter:inst5|out[13]                   ; 8       ;
+; counter:inst5|out[15]                   ; 8       ;
+; counter:inst5|out[14]                   ; 8       ;
+; counter:inst5|out[12]                   ; 8       ;
+; registerarray:inst2|regarray[22][1]     ; 3       ;
+; registerarray:inst2|regarray[26][1]     ; 3       ;
+; registerarray:inst2|regarray[18][1]     ; 3       ;
+; registerarray:inst2|regarray[30][1]     ; 3       ;
+; registerarray:inst2|regarray[27][1]     ; 3       ;
+; registerarray:inst2|regarray[23][1]     ; 3       ;
+; registerarray:inst2|regarray[19][1]     ; 3       ;
+; registerarray:inst2|regarray[31][1]     ; 3       ;
+; registerarray:inst2|regarray[10][1]     ; 3       ;
+; registerarray:inst2|regarray[11][1]     ; 3       ;
+; registerarray:inst2|regarray[6][1]      ; 3       ;
+; registerarray:inst2|regarray[7][1]      ; 3       ;
+; registerarray:inst2|regarray[2][1]      ; 4       ;
+; registerarray:inst2|regarray[3][1]      ; 3       ;
+; registerarray:inst2|regarray[14][1]     ; 3       ;
+; registerarray:inst2|regarray[15][1]     ; 3       ;
+; registerarray:inst2|regarray[22][2]     ; 3       ;
+; registerarray:inst2|regarray[30][2]     ; 3       ;
+; registerarray:inst2|regarray[21][2]     ; 3       ;
+; registerarray:inst2|regarray[29][2]     ; 3       ;
+; registerarray:inst2|regarray[20][2]     ; 3       ;
+; registerarray:inst2|regarray[28][2]     ; 3       ;
+; registerarray:inst2|regarray[23][2]     ; 3       ;
+; registerarray:inst2|regarray[31][2]     ; 3       ;
+; registerarray:inst2|regarray[5][2]      ; 3       ;
+; registerarray:inst2|regarray[6][2]      ; 3       ;
+; registerarray:inst2|regarray[4][2]      ; 4       ;
+; registerarray:inst2|regarray[7][2]      ; 3       ;
+; registerarray:inst2|regarray[13][2]     ; 3       ;
+; registerarray:inst2|regarray[14][2]     ; 3       ;
+; registerarray:inst2|regarray[12][2]     ; 3       ;
+; registerarray:inst2|regarray[15][2]     ; 3       ;
+; registerarray:inst2|regarray[26][3]     ; 3       ;
+; registerarray:inst2|regarray[30][3]     ; 3       ;
+; registerarray:inst2|regarray[25][3]     ; 3       ;
+; registerarray:inst2|regarray[29][3]     ; 3       ;
+; registerarray:inst2|regarray[24][3]     ; 3       ;
+; registerarray:inst2|regarray[28][3]     ; 3       ;
+; registerarray:inst2|regarray[27][3]     ; 3       ;
+; registerarray:inst2|regarray[31][3]     ; 3       ;
+; registerarray:inst2|regarray[10][3]     ; 3       ;
+; registerarray:inst2|regarray[9][3]      ; 3       ;
+; registerarray:inst2|regarray[8][3]      ; 4       ;
+; registerarray:inst2|regarray[11][3]     ; 3       ;
+; registerarray:inst2|regarray[13][3]     ; 3       ;
+; registerarray:inst2|regarray[14][3]     ; 3       ;
+; registerarray:inst2|regarray[12][3]     ; 3       ;
+; registerarray:inst2|regarray[15][3]     ; 3       ;
+; registerarray:inst2|regarray[21][0]     ; 3       ;
+; registerarray:inst2|regarray[25][0]     ; 3       ;
+; registerarray:inst2|regarray[17][0]     ; 3       ;
+; registerarray:inst2|regarray[29][0]     ; 3       ;
+; registerarray:inst2|regarray[23][0]     ; 3       ;
+; registerarray:inst2|regarray[27][0]     ; 3       ;
+; registerarray:inst2|regarray[19][0]     ; 3       ;
+; registerarray:inst2|regarray[31][0]     ; 3       ;
+; registerarray:inst2|regarray[5][0]      ; 3       ;
+; registerarray:inst2|regarray[7][0]      ; 3       ;
+; registerarray:inst2|regarray[9][0]      ; 3       ;
+; registerarray:inst2|regarray[11][0]     ; 3       ;
+; registerarray:inst2|regarray[1][0]      ; 4       ;
+; registerarray:inst2|regarray[3][0]      ; 3       ;
+; registerarray:inst2|regarray[13][0]     ; 3       ;
+; registerarray:inst2|regarray[15][0]     ; 3       ;
+; registerarray:inst2|regarray[22][4]     ; 3       ;
+; registerarray:inst2|regarray[26][4]     ; 3       ;
+; registerarray:inst2|regarray[18][4]     ; 3       ;
+; registerarray:inst2|regarray[30][4]     ; 3       ;
+; registerarray:inst2|regarray[25][4]     ; 3       ;
+; registerarray:inst2|regarray[21][4]     ; 3       ;
+; registerarray:inst2|regarray[17][4]     ; 3       ;
+; registerarray:inst2|regarray[29][4]     ; 3       ;
+; registerarray:inst2|regarray[20][4]     ; 3       ;
+; registerarray:inst2|regarray[24][4]     ; 3       ;
+; registerarray:inst2|regarray[16][4]     ; 4       ;
+; registerarray:inst2|regarray[28][4]     ; 3       ;
+; registerarray:inst2|regarray[27][4]     ; 3       ;
+; registerarray:inst2|regarray[23][4]     ; 3       ;
+; registerarray:inst2|regarray[19][4]     ; 3       ;
+; registerarray:inst2|regarray[31][4]     ; 3       ;
+; Total number of inverted registers = 96 ;         ;
 +-----------------------------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
-; 4:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |registerarray|regarray[31][20]        ;
-; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |registerarray|regarray[30][27]        ;
-; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |registerarray|regarray[29][5]         ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[28][17]        ;
-; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |registerarray|regarray[27][5]         ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[26][23]        ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[25][16]        ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[24][7]         ;
-; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |registerarray|regarray[23][18]        ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[22][7]         ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[21][28]        ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[20][0]         ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[19][23]        ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[18][14]        ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[17][5]         ;
-; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |registerarray|regarray[16][15]        ;
-; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |registerarray|regarray[15][11]        ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[14][11]        ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[13][11]        ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[12][4]         ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[11][10]        ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[10][0]         ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[9][31]         ;
-; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |registerarray|regarray[8][20]         ;
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |registerarray|regarray[7][13]         ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[6][9]          ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[5][11]         ;
-; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |registerarray|regarray[4][15]         ;
-; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |registerarray|regarray[3][29]         ;
-; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |registerarray|regarray[2][23]         ;
-; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |registerarray|regarray[1][13]         ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |registerarray|regarray[0][22]         ;
-; 32:1               ; 32 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; Yes        ; |registerarray|data_out_1[8]~reg0      ;
-; 32:1               ; 32 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; Yes        ; |registerarray|data_out_2[4]~reg0      ;
-; 32:1               ; 32 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; Yes        ; |registerarray|data_out_debug[28]~reg0 ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |registerarray|regarray[31][3]         ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |registerarray|regarray[30][3]         ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |registerarray|regarray[29][0]         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[28][2]         ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |registerarray|regarray[27][1]         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[26][3]         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[25][0]         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[24][3]         ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |registerarray|regarray[23][2]         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[22][2]         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[21][4]         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[20][4]         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[19][1]         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[18][4]         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[17][4]         ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |registerarray|regarray[15][2]         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[14][2]         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[13][0]         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[12][2]         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[11][1]         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[10][1]         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[9][3]          ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |registerarray|regarray[7][0]          ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[6][2]          ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[5][0]          ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |registerarray|regarray[3][1]          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------+
+; 4:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[31][5]                                             ;
+; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[30][24]                                            ;
+; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[29][17]                                            ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[28][28]                                            ;
+; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[27][10]                                            ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[26][18]                                            ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[25][19]                                            ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[24][27]                                            ;
+; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[23][31]                                            ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[22][31]                                            ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[21][6]                                             ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[20][20]                                            ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[19][27]                                            ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[18][16]                                            ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[17][22]                                            ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[16][6]                                             ;
+; 4:1                ; 28 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[15][18]                                            ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[14][9]                                             ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[13][7]                                             ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[12][9]                                             ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[11][9]                                             ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[10][10]                                            ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[9][11]                                             ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[8][31]                                             ;
+; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[7][17]                                             ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[6][28]                                             ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[5][22]                                             ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[4][25]                                             ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[3][10]                                             ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[2][25]                                             ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[1][25]                                             ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |LPM|registerarray:inst2|regarray[0][14]                                             ;
+; 32:1               ; 32 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; Yes        ; |LPM|registerarray:inst2|data_out_debug[15]                                          ;
+; 32:1               ; 32 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; Yes        ; |LPM|registerarray:inst2|data_out_1[16]                                              ;
+; 32:1               ; 32 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; Yes        ; |LPM|registerarray:inst2|data_out_2[29]                                              ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[31][3]                                             ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[30][1]                                             ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[29][3]                                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[28][3]                                             ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[27][0]                                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[26][3]                                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[25][0]                                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[24][4]                                             ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[23][0]                                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[22][4]                                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[21][4]                                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[20][4]                                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[19][4]                                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[18][1]                                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[17][4]                                             ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[15][1]                                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[14][1]                                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[13][2]                                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[12][3]                                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[11][3]                                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[10][3]                                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[9][3]                                              ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[7][1]                                              ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[6][1]                                              ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[5][2]                                              ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |LPM|registerarray:inst2|regarray[3][1]                                              ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |LPM|LCD_Display:inst18|DATA_BUS_VALUE[5]                                            ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |LPM|LCD_Display:inst18|state                                                        ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |LPM|lpm_mux2:inst17|lpm_mux:LPM_MUX_component|mux_boc:auto_generated|result_node[0] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |LPM|LCD_Display:inst18|next_command                                                 ;
+; 48:1               ; 3 bits    ; 96 LEs        ; 78 LEs               ; 18 LEs                 ; No         ; |LPM|LCD_Display:inst18|Mux5                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------+
+; Source assignments for rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------------+
+; Assignment                      ; Value              ; From ; To                                ;
++---------------------------------+--------------------+------+-----------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                 ;
++---------------------------------+--------------------+------+-----------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Source assignments for ram:inst|altsyncram:altsyncram_component|altsyncram_5cc1:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------+
+; Assignment                      ; Value              ; From ; To                               ;
++---------------------------------+--------------------+------+----------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                ;
++---------------------------------+--------------------+------+----------------------------------+
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: LCD_Display:inst18 ;
++-----------------+-------+---------------------------------------+
+; Parameter Name  ; Value ; Type                                  ;
++-----------------+-------+---------------------------------------+
+; Num_Hex_Digits  ; 8     ; Signed Integer                        ;
+; Num_Hex_Digits1 ; 8     ; Signed Integer                        ;
++-----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: lpm_mux2:inst17|lpm_mux:LPM_MUX_component ;
++------------------------+------------+--------------------------------------------------+
+; Parameter Name         ; Value      ; Type                                             ;
++------------------------+------------+--------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON         ; AUTO_CARRY                                       ;
+; IGNORE_CARRY_BUFFERS   ; OFF        ; IGNORE_CARRY                                     ;
+; AUTO_CASCADE_CHAINS    ; ON         ; AUTO_CASCADE                                     ;
+; IGNORE_CASCADE_BUFFERS ; OFF        ; IGNORE_CASCADE                                   ;
+; LPM_WIDTH              ; 32         ; Signed Integer                                   ;
+; LPM_SIZE               ; 3          ; Signed Integer                                   ;
+; LPM_WIDTHS             ; 2          ; Signed Integer                                   ;
+; LPM_PIPELINE           ; 0          ; Untyped                                          ;
+; CBXI_PARAMETER         ; mux_boc    ; Untyped                                          ;
+; DEVICE_FAMILY          ; Cyclone II ; Untyped                                          ;
++------------------------+------------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: lpm_mux2:inst26|lpm_mux:LPM_MUX_component ;
++------------------------+------------+--------------------------------------------------+
+; Parameter Name         ; Value      ; Type                                             ;
++------------------------+------------+--------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON         ; AUTO_CARRY                                       ;
+; IGNORE_CARRY_BUFFERS   ; OFF        ; IGNORE_CARRY                                     ;
+; AUTO_CASCADE_CHAINS    ; ON         ; AUTO_CASCADE                                     ;
+; IGNORE_CASCADE_BUFFERS ; OFF        ; IGNORE_CASCADE                                   ;
+; LPM_WIDTH              ; 32         ; Signed Integer                                   ;
+; LPM_SIZE               ; 3          ; Signed Integer                                   ;
+; LPM_WIDTHS             ; 2          ; Signed Integer                                   ;
+; LPM_PIPELINE           ; 0          ; Untyped                                          ;
+; CBXI_PARAMETER         ; mux_boc    ; Untyped                                          ;
+; DEVICE_FAMILY          ; Cyclone II ; Untyped                                          ;
++------------------------+------------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: lpm_mux0:inst13|lpm_mux:LPM_MUX_component ;
++------------------------+------------+--------------------------------------------------+
+; Parameter Name         ; Value      ; Type                                             ;
++------------------------+------------+--------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON         ; AUTO_CARRY                                       ;
+; IGNORE_CARRY_BUFFERS   ; OFF        ; IGNORE_CARRY                                     ;
+; AUTO_CASCADE_CHAINS    ; ON         ; AUTO_CASCADE                                     ;
+; IGNORE_CASCADE_BUFFERS ; OFF        ; IGNORE_CASCADE                                   ;
+; LPM_WIDTH              ; 1          ; Signed Integer                                   ;
+; LPM_SIZE               ; 2          ; Signed Integer                                   ;
+; LPM_WIDTHS             ; 1          ; Signed Integer                                   ;
+; LPM_PIPELINE           ; 0          ; Untyped                                          ;
+; CBXI_PARAMETER         ; mux_lmc    ; Untyped                                          ;
+; DEVICE_FAMILY          ; Cyclone II ; Untyped                                          ;
++------------------------+------------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: rom:inst1|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+----------------------------+
+; Parameter Name                     ; Value                ; Type                       ;
++------------------------------------+----------------------+----------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                    ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE             ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                    ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                    ;
+; WIDTH_A                            ; 32                   ; Signed Integer             ;
+; WIDTHAD_A                          ; 8                    ; Signed Integer             ;
+; NUMWORDS_A                         ; 256                  ; Signed Integer             ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                    ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                    ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WIDTH_B                            ; 1                    ; Untyped                    ;
+; WIDTHAD_B                          ; 1                    ; Untyped                    ;
+; NUMWORDS_B                         ; 1                    ; Untyped                    ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                    ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                    ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                    ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                    ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer             ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                    ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                    ;
+; BYTE_SIZE                          ; 8                    ; Untyped                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; INIT_FILE                          ; memtest2.mif         ; Untyped                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                    ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                    ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                    ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                    ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                    ;
+; CBXI_PARAMETER                     ; altsyncram_ka71      ; Untyped                    ;
++------------------------------------+----------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ram:inst|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+---------------------------+
+; Parameter Name                     ; Value                ; Type                      ;
++------------------------------------+----------------------+---------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                   ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY              ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE              ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE            ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                   ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                   ;
+; WIDTH_A                            ; 32                   ; Signed Integer            ;
+; WIDTHAD_A                          ; 8                    ; Signed Integer            ;
+; NUMWORDS_A                         ; 256                  ; Signed Integer            ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                   ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                   ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                   ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                   ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                   ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                   ;
+; WIDTH_B                            ; 1                    ; Untyped                   ;
+; WIDTHAD_B                          ; 1                    ; Untyped                   ;
+; NUMWORDS_B                         ; 1                    ; Untyped                   ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                   ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                   ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                   ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                   ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                   ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                   ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                   ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                   ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                   ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                   ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                   ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                   ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer            ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                   ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                   ;
+; BYTE_SIZE                          ; 8                    ; Untyped                   ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                   ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                   ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                   ;
+; INIT_FILE                          ; memtest.mif          ; Untyped                   ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                   ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                   ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                   ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                   ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                   ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                   ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                   ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                   ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                   ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                   ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                   ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                   ;
+; CBXI_PARAMETER                     ; altsyncram_5cc1      ; Untyped                   ;
++------------------------------------+----------------------+---------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                      ;
++-------------------------------------------+-------------------------------------------+
+; Name                                      ; Value                                     ;
++-------------------------------------------+-------------------------------------------+
+; Number of entity instances                ; 2                                         ;
+; Entity Instance                           ; rom:inst1|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; ROM                                       ;
+;     -- WIDTH_A                            ; 32                                        ;
+;     -- NUMWORDS_A                         ; 256                                       ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                    ;
+;     -- WIDTH_B                            ; 1                                         ;
+;     -- NUMWORDS_B                         ; 1                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                 ;
+; Entity Instance                           ; ram:inst|altsyncram:altsyncram_component  ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                               ;
+;     -- WIDTH_A                            ; 32                                        ;
+;     -- NUMWORDS_A                         ; 256                                       ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                    ;
+;     -- WIDTH_B                            ; 1                                         ;
+;     -- NUMWORDS_B                         ; 1                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                 ;
++-------------------------------------------+-------------------------------------------+
 
 
 +-------------------------------+
@@ -384,7 +813,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:06     ;
 +----------------+--------------+
 
 
@@ -394,7 +823,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Thu Oct 22 16:41:44 2015
+    Info: Processing started: Thu Oct 29 17:18:31 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LPM -c LPM
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file register.v
@@ -408,8 +837,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file ram.v
     Info (12023): Found entity 1: ram
 Info (12021): Found 1 design units, including 1 entities, in source file rom.v
     Info (12023): Found entity 1: rom
-Info (12021): Found 1 design units, including 1 entities, in source file block diagram.bdf
-    Info (12023): Found entity 1: Block Diagram
 Info (12021): Found 2 design units, including 1 entities, in source file debounce.vhd
     Info (12022): Found design unit 1: debounce-a
     Info (12023): Found entity 1: debounce
@@ -441,26 +868,160 @@ Info (12021): Found 2 design units, including 1 entities, in source file lcd_dis
     Info (12023): Found entity 1: LCD_Display
 Info (12021): Found 1 design units, including 1 entities, in source file hexdigit.v
     Info (12023): Found entity 1: hexdigit
-Info (12127): Elaborating entity "registerarray" for the top level hierarchy
-Info (144001): Generated suppressed messages file C:/Users/Chris/Desktop/School/ECE 473/Labs/Lab 5/Quartus/output_files/LPM.map.smsg
+Info (12021): Found 1 design units, including 1 entities, in source file if_id.v
+    Info (12023): Found entity 1: IF_ID
+Info (12021): Found 1 design units, including 1 entities, in source file id_ex.v
+    Info (12023): Found entity 1: ID_EX
+Info (12021): Found 1 design units, including 1 entities, in source file ex_mem.v
+    Info (12023): Found entity 1: EX_MEM
+Info (12021): Found 1 design units, including 1 entities, in source file mem_wb.v
+    Info (12023): Found entity 1: MEM_WB
+Info (12127): Elaborating entity "LPM" for the top level hierarchy
+Warning (275083): Bus "lcd_address1[3..0]" found using same base name as "lcd_address", which might lead to a name conflict.
+Warning (275083): Bus "lcd_address1[3..0]" found using same base name as "lcd_address", which might lead to a name conflict.
+Warning (275080): Converted elements in bus name "lcd_address" using legacy naming rules. Make any assignments on the new names, not on the original names.
+    Warning (275081): Converted element name(s) from "lcd_address[3..0]" to "lcd_address3..0"
+    Warning (275081): Converted element name(s) from "lcd_address[3..0]" to "lcd_address3..0"
+Warning (275080): Converted elements in bus name "lcd_address1" using legacy naming rules. Make any assignments on the new names, not on the original names.
+    Warning (275081): Converted element name(s) from "lcd_address1[3..0]" to "lcd_address13..0"
+    Warning (275081): Converted element name(s) from "lcd_address1[3..0]" to "lcd_address13..0"
+Info (12128): Elaborating entity "LCD_Display" for hierarchy "LCD_Display:inst18"
+Warning (12125): Using design file lpm_mux2.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: lpm_mux2
+Info (12128): Elaborating entity "lpm_mux2" for hierarchy "lpm_mux2:inst17"
+Info (12128): Elaborating entity "lpm_mux" for hierarchy "lpm_mux2:inst17|lpm_mux:LPM_MUX_component"
+Info (12130): Elaborated megafunction instantiation "lpm_mux2:inst17|lpm_mux:LPM_MUX_component"
+Info (12133): Instantiated megafunction "lpm_mux2:inst17|lpm_mux:LPM_MUX_component" with the following parameter:
+    Info (12134): Parameter "lpm_size" = "3"
+    Info (12134): Parameter "lpm_type" = "LPM_MUX"
+    Info (12134): Parameter "lpm_width" = "32"
+    Info (12134): Parameter "lpm_widths" = "2"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_boc.tdf
+    Info (12023): Found entity 1: mux_boc
+Info (12128): Elaborating entity "mux_boc" for hierarchy "lpm_mux2:inst17|lpm_mux:LPM_MUX_component|mux_boc:auto_generated"
+Info (12128): Elaborating entity "registerarray" for hierarchy "registerarray:inst2"
+Info (12128): Elaborating entity "lpm_mux0" for hierarchy "lpm_mux0:inst13"
+Info (12128): Elaborating entity "lpm_mux" for hierarchy "lpm_mux0:inst13|lpm_mux:LPM_MUX_component"
+Info (12130): Elaborated megafunction instantiation "lpm_mux0:inst13|lpm_mux:LPM_MUX_component"
+Info (12133): Instantiated megafunction "lpm_mux0:inst13|lpm_mux:LPM_MUX_component" with the following parameter:
+    Info (12134): Parameter "lpm_size" = "2"
+    Info (12134): Parameter "lpm_type" = "LPM_MUX"
+    Info (12134): Parameter "lpm_width" = "1"
+    Info (12134): Parameter "lpm_widths" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_lmc.tdf
+    Info (12023): Found entity 1: mux_lmc
+Info (12128): Elaborating entity "mux_lmc" for hierarchy "lpm_mux0:inst13|lpm_mux:LPM_MUX_component|mux_lmc:auto_generated"
+Info (12128): Elaborating entity "clk_div" for hierarchy "clk_div:inst9"
+Info (12128): Elaborating entity "debounce" for hierarchy "debounce:inst11"
+Info (12128): Elaborating entity "MEM_WB" for hierarchy "MEM_WB:inst16"
+Info (12128): Elaborating entity "EX_MEM" for hierarchy "EX_MEM:inst15"
+Info (12128): Elaborating entity "ID_EX" for hierarchy "ID_EX:inst39"
+Info (12128): Elaborating entity "IF_ID" for hierarchy "IF_ID:inst34"
+Info (12128): Elaborating entity "rom" for hierarchy "rom:inst1"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "rom:inst1|altsyncram:altsyncram_component"
+Info (12130): Elaborated megafunction instantiation "rom:inst1|altsyncram:altsyncram_component"
+Info (12133): Instantiated megafunction "rom:inst1|altsyncram:altsyncram_component" with the following parameter:
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "memtest2.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "256"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "widthad_a" = "8"
+    Info (12134): Parameter "width_a" = "32"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ka71.tdf
+    Info (12023): Found entity 1: altsyncram_ka71
+Info (12128): Elaborating entity "altsyncram_ka71" for hierarchy "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated"
+Info (12128): Elaborating entity "program_counter" for hierarchy "program_counter:inst37"
+Warning (10230): Verilog HDL assignment warning at Program counter.v(16): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at Program counter.v(21): truncated value with size 32 to match size of target (8)
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:inst10"
+Info (12128): Elaborating entity "ram" for hierarchy "ram:inst"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "ram:inst|altsyncram:altsyncram_component"
+Info (12130): Elaborated megafunction instantiation "ram:inst|altsyncram:altsyncram_component"
+Info (12133): Instantiated megafunction "ram:inst|altsyncram:altsyncram_component" with the following parameter:
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "memtest.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "256"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "widthad_a" = "8"
+    Info (12134): Parameter "width_a" = "32"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_5cc1.tdf
+    Info (12023): Found entity 1: altsyncram_5cc1
+Info (12128): Elaborating entity "altsyncram_5cc1" for hierarchy "ram:inst|altsyncram:altsyncram_component|altsyncram_5cc1:auto_generated"
+Info (12128): Elaborating entity "hexdigit" for hierarchy "hexdigit:inst19"
+Info (12128): Elaborating entity "counter" for hierarchy "counter:inst5"
+Warning (10230): Verilog HDL assignment warning at counter.v(18): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at counter.v(23): truncated value with size 32 to match size of target (16)
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following RAM node(s):
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[0]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[1]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[2]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[3]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[4]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[5]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[6]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[7]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[8]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[9]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[10]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[26]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[27]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[28]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[29]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[30]"
+        Warning (14320): Synthesized away node "rom:inst1|altsyncram:altsyncram_component|altsyncram_ka71:auto_generated|q_a[31]"
+Warning (19016): Clock multiplexers are found and protected
+    Warning (19017): Found clock multiplexer lpm_mux0:inst13|lpm_mux:LPM_MUX_component|mux_lmc:auto_generated|result_node[0]~synth
+Warning (13044): Always-enabled tri-state buffer(s) removed
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "LCD_Display:inst18|DATA_BUS[7]" to the node "LCD_DATA[7]" into a wire
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "LCD_Display:inst18|DATA_BUS[6]" to the node "LCD_DATA[6]" into a wire
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "LCD_Display:inst18|DATA_BUS[5]" to the node "LCD_DATA[5]" into a wire
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "LCD_Display:inst18|DATA_BUS[4]" to the node "LCD_DATA[4]" into a wire
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "LCD_Display:inst18|DATA_BUS[3]" to the node "LCD_DATA[3]" into a wire
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "LCD_Display:inst18|DATA_BUS[2]" to the node "LCD_DATA[2]" into a wire
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "LCD_Display:inst18|DATA_BUS[1]" to the node "LCD_DATA[1]" into a wire
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "LCD_Display:inst18|DATA_BUS[0]" to the node "LCD_DATA[0]" into a wire
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LCD_RW" is stuck at GND
+    Warning (13410): Pin "LCD_ON" is stuck at VCC
+    Warning (13410): Pin "HEX4[5]" is stuck at GND
+    Warning (13410): Pin "HEX7[6]" is stuck at VCC
+    Warning (13410): Pin "HEX7[2]" is stuck at GND
+    Warning (13410): Pin "HEX7[1]" is stuck at GND
+Info (17036): Removed 3 MSB VCC or GND address nodes from RAM block "ram:inst|altsyncram:altsyncram_component|altsyncram_5cc1:auto_generated|ALTSYNCRAM"
+Info (144001): Generated suppressed messages file C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/output_files/LPM.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "clock_debug"
-Info (21057): Implemented 3282 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 56 input pins
-    Info (21059): Implemented 96 output pins
-    Info (21061): Implemented 3130 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 528 megabytes
-    Info: Processing ended: Thu Oct 22 16:41:51 2015
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:06
+Info (21057): Implemented 3780 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 22 input pins
+    Info (21059): Implemented 70 output pins
+    Info (21061): Implemented 3641 logic cells
+    Info (21064): Implemented 47 RAM segments
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 51 warnings
+    Info: Peak virtual memory: 563 megabytes
+    Info: Processing ended: Thu Oct 29 17:18:40 2015
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:09
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in C:/Users/Chris/Desktop/School/ECE 473/Labs/Lab 5/Quartus/output_files/LPM.map.smsg.
+The suppressed messages can be found in C:/Users/Chris/Desktop/School/ECE 473/Labs/Milestone 1/Quartus/output_files/LPM.map.smsg.
 
 

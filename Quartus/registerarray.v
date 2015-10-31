@@ -30,17 +30,14 @@ module registerarray(
 			integer i = 0;
 			for(i=0; i<32;i=1+i)begin
 				regarray[i] = i;
-			end
-			
+			end		
 		end else if (write == 1'b1) begin
 			regarray[write_address] <= write_data_in;  // write data in is going into the 5 bit write address
 		end
 	end
-	always @(negedge clock) begin    
-		if (write == 1'b0) begin 
-			data_out_1 <= regarray[read_address_1];
-			data_out_2 <= regarray[read_address_2];
-			data_out_debug <= regarray[read_address_debug];
-		end
+	always @(negedge clock) begin     
+		data_out_1 <= regarray[read_address_1];
+		data_out_2 <= regarray[read_address_2];
+		data_out_debug <= regarray[read_address_debug];
 	end
 endmodule
