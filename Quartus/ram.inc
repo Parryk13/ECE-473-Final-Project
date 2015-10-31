@@ -13,7 +13,7 @@
 --applicable agreement for further details.
 
 
-FUNCTION ram 
+FUNCTION RAM 
 (
 	address[7..0],
 	clock,

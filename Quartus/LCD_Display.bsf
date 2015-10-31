@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 360 128)
+	(rect 16 16 312 128)
 	(text "LCD_Display" (rect 5 0 60 12)(font "Arial" ))
 	(text "inst" (rect 8 96 20 108)(font "Arial" ))
 	(port
@@ -40,57 +40,52 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "Hex_Display_Data[num_hex_digits*4-1..0]" (rect 0 0 166 12)(font "Arial" ))
-		(text "Hex_Display_Data[num_hex_digits*4-1..0]" (rect 21 59 187 71)(font "Arial" ))
+		(text "Hex_Display_Data[31..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "Hex_Display_Data[31..0]" (rect 21 59 121 71)(font "Arial" ))
 		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
 		(pt 0 80)
 		(input)
-		(text "line_2_display[num_hex_digits1*4-1..0]" (rect 0 0 148 12)(font "Arial" ))
-		(text "line_2_display[num_hex_digits1*4-1..0]" (rect 21 75 169 87)(font "Arial" ))
+		(text "HEX_Display_Dataduh[31..0]" (rect 0 0 118 12)(font "Arial" ))
+		(text "HEX_Display_Dataduh[31..0]" (rect 21 75 139 87)(font "Arial" ))
 		(line (pt 0 80)(pt 16 80)(line_width 3))
 	)
 	(port
-		(pt 344 32)
+		(pt 296 32)
 		(output)
 		(text "LCD_RS" (rect 0 0 40 12)(font "Arial" ))
-		(text "LCD_RS" (rect 283 27 323 39)(font "Arial" ))
-		(line (pt 344 32)(pt 328 32)(line_width 1))
+		(text "LCD_RS" (rect 235 27 275 39)(font "Arial" ))
+		(line (pt 296 32)(pt 280 32)(line_width 1))
 	)
 	(port
-		(pt 344 48)
+		(pt 296 48)
 		(output)
 		(text "LCD_EN" (rect 0 0 40 12)(font "Arial" ))
-		(text "LCD_EN" (rect 283 43 323 55)(font "Arial" ))
-		(line (pt 344 48)(pt 328 48)(line_width 1))
+		(text "LCD_EN" (rect 235 43 275 55)(font "Arial" ))
+		(line (pt 296 48)(pt 280 48)(line_width 1))
 	)
 	(port
-		(pt 344 64)
+		(pt 296 64)
 		(output)
 		(text "LCD_RW" (rect 0 0 44 12)(font "Arial" ))
-		(text "LCD_RW" (rect 279 59 323 71)(font "Arial" ))
-		(line (pt 344 64)(pt 328 64)(line_width 1))
+		(text "LCD_RW" (rect 231 59 275 71)(font "Arial" ))
+		(line (pt 296 64)(pt 280 64)(line_width 1))
 	)
 	(port
-		(pt 344 80)
+		(pt 296 80)
 		(bidir)
 		(text "DATA_BUS[7..0]" (rect 0 0 74 12)(font "Arial" ))
-		(text "DATA_BUS[7..0]" (rect 249 75 323 87)(font "Arial" ))
-		(line (pt 344 80)(pt 328 80)(line_width 3))
+		(text "DATA_BUS[7..0]" (rect 201 75 275 87)(font "Arial" ))
+		(line (pt 296 80)(pt 280 80)(line_width 3))
 	)
 	(parameter
 		"Num_Hex_Digits"
-		"8"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"Num_Hex_Digits1"
-		"8"
+		"2"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 328 96)(line_width 1))
+		(rectangle (rect 16 16 280 96)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 360 -64 460 16))
+	(annotation_block (parameter)(rect 312 -64 412 16))
 )

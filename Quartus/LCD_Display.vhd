@@ -6,8 +6,7 @@ USE  IEEE.STD_LOGIC_UNSIGNED.all;
 ENTITY LCD_Display IS
 -- Enter number of live Hex hardware data values to display
 -- (do not count ASCII character constants)
-	GENERIC(Num_Hex_Digits: Integer:= 8;
-			  Num_Hex_Digits1: Integer:= 8);
+	GENERIC(Num_Hex_Digits: Integer:= 2); 
 -----------------------------------------------------------------------
 -- LCD Displays 16 Characters on 2 lines
 -- LCD_display string is an ASCII character string entered in hex for 
@@ -41,8 +40,8 @@ ENTITY LCD_Display IS
 -- *see LCD Controller's Datasheet for other graphics characters available
 --
 	PORT(reset, clk_48Mhz			: IN	STD_LOGIC;
-		 Hex_Display_Data			: IN    STD_LOGIC_VECTOR((Num_Hex_Digits*4)-1 DOWNTO 0);
-		 line_2_display			: IN	STD_LOGIC_VECTOR((Num_Hex_Digits1*4)-1 DOWNTO 0);
+		 Hex_Display_Data			: IN    STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 HEX_Display_Dataduh		: IN    STD_LOGIC_VECTOR(31 DOWNTO 0);
 		 LCD_RS, LCD_EN				: OUT	STD_LOGIC;
 		 LCD_RW						: OUT   STD_LOGIC;
 		 DATA_BUS					: INOUT	STD_LOGIC_VECTOR(7 DOWNTO 0));
@@ -70,23 +69,17 @@ LCD_display_string <= (
 -- Enter Live Hex Data Values from hardware here
 -- LCD DISPLAYS THE FOLLOWING:
 ------------------------------
---| Instruction               |
---| Value                     |
+--| INSTR=XX                  |
+--| VALUE=XX                       |
 ------------------------------
 -- Line 1
-X"41",X"64",X"64",X"72",X"3A",X"20",X"20", -- "Addr: "
-X"0" & Hex_Display_Data(31 DOWNTO 28),X"0" & Hex_Display_Data(27 DOWNTO 24), -- 8 hex values of address
-X"0" & Hex_Display_Data(23 DOWNTO 20),X"0" & Hex_Display_Data(19 DOWNTO 16),
-X"0" & Hex_Display_Data(15 DOWNTO 12),X"0" & Hex_Display_Data(11 DOWNTO 8),
+X"49",X"4E",X"53",X"54",X"52",X"3D",
 X"0" & Hex_Display_Data(7 DOWNTO 4),X"0" & Hex_Display_Data(3 DOWNTO 0),
-X"20", -- (spaces to fill rest of line)
+X"20",X"20",X"20",X"20",X"20",X"20",X"20",X"20",
 -- Line 2
-X"56",X"61",X"6C",X"75",X"65",X"3A",X"20", -- "Value: "
-X"0" & line_2_display(31 DOWNTO 28),X"0" & line_2_display(27 DOWNTO 24), -- 8 hex values of contents
-X"0" & line_2_display(23 DOWNTO 20),X"0" & line_2_display(19 DOWNTO 16),
-X"0" & line_2_display(15 DOWNTO 12),X"0" & line_2_display(11 DOWNTO 8),
-X"0" & line_2_display(7 DOWNTO 4),X"0" & line_2_display(3 DOWNTO 0),
-X"20");
+X"56",X"41",X"4C",X"55",X"45",X"3D",
+X"0" & Hex_Display_Dataduh(23 DOWNTO 20),X"0" & Hex_Display_Dataduh(19 DOWNTO 16),X"0" & Hex_Display_Dataduh(15 DOWNTO 12),X"0" & Hex_Display_Dataduh(11 DOWNTO 8),X"0" & Hex_Display_Dataduh(7 DOWNTO 4),X"0" & Hex_Display_Dataduh(3 DOWNTO 0),
+X"20",X"20",X"20",X"20");
 
 -- BIDIRECTIONAL TRI STATE LCD DATA BUS
 	DATA_BUS <= DATA_BUS_VALUE WHEN LCD_RW_INT = '0' ELSE "ZZZZZZZZ";

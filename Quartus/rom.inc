@@ -13,7 +13,7 @@
 --applicable agreement for further details.
 
 
-FUNCTION rom 
+FUNCTION ROM 
 (
 	address[7..0],
 	clock

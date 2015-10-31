@@ -1,4 +1,4 @@
-ram	ram_inst (
+RAM	RAM_inst (
 	.address ( address_sig ),
 	.clock ( clock_sig ),
 	.data ( data_sig ),

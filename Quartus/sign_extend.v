@@ -1,25 +1,15 @@
-//sign extender
+module Sign_Extend
+(
+ input wire [15:0] in,
+ output reg [31:0] out
 
-module signextender(
-	input [15:0] in, 
-	output reg [31:0] out);
 
-	integer i;
 
-	always @(*)
+);
 
-	begin
-	//for (i=0; i < 16; i = i + 1)  // Setting individual memory cells to 0
-	//begin
-	//	out[i] = in[i];
-	//end
+always @ (*) begin
+
+	out<=in;
 	
-	out[15:0] = in[15:0];
-
-	for (i=16; i<32; i = i+1)
-	begin
-		out[i] = in[15];
-	end
 end
-
 endmodule

@@ -1,16 +1,13 @@
-// fetch id
+module IF_ID(
+input wire clock,
+input wire [31:0] data_in,
+output reg [31:0] data_out,
+output reg [15:0] sign_in
 
-module IF_ID (
-	input [31:0] instruction,
-	input clk,
-	output reg write,
-	output reg [31:0] instr);
 
-	always @ (posedge clk)
-	begin
-		instr <= instruction;
-		if(instruction[15:11]!=0)		
-			write <= 1'b1;
+);
+	always @(posedge clock) begin
+	data_out <= data_in;
 	end
-
 endmodule
+	
